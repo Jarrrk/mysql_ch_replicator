@@ -478,7 +478,7 @@ class MysqlToClickhouseConverter:
                 ):
                     if isinstance(clickhouse_field_value, bytes):
                         charset = mysql_structure.charset_python or 'utf-8'
-                        clickhouse_field_value = clickhouse_field_value.decode(charset)
+                        clickhouse_field_value = clickhouse_field_value.decode('utf-8', errors='replace')
 
                 if 'set(' in mysql_field_type:
                     set_values = mysql_structure.fields[idx].additional_data
